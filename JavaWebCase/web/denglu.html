@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/jquery-3.3.1.min.js"></script>
+
+    <script>
+        /*$(function () {
+            //设置焦点失去事件
+            $("#username").blur(function () {
+                //获取输入框的内容
+                var username = $(this).val();
+                //用ajax异步访问服务端，并传递username
+                $.get("FindServlet",{username:username},function (data) {
+                    //获取span
+                    var span = $("#s_username");
+                    //对从服务端传来的数据判断
+                    if (data.userExsit) {
+                        //userExsit的值如果是true,设置span属性
+                        span.css("color", "red");
+                        span.html(data.msg);
+                    } else {
+                        //userExsit的值如果是false
+                        span.css("color", "green");
+                        span.html(data.msg);
+                    }
+                });
+            });
+        });*/
+
+        $(function () {
+            $("#username").blur(function () {
+                var username = $(this).val();
+                $.get("FindServlet",{username:username},function (data) {
+                    var span = $("#s_username");
+                    if (data.userExsit) {
+                        span.css("color", "red");
+                        span.html(data.msg);
+                    } else {
+                        span.css("color", "green");
+                        span.html(data.msg);
+                    }
+                });
+            });
+        });
+
+    </script>
+</head>
+<body>
+<form>
+    <label for="username">用户名:</label>
+    <input type="text" name="username" id="username">
+    <span id="s_username"></span>
+    <br>
+    <label for="password">密码：  </label>
+    <input type="password" id="password">
+    <br>
+    <input type="submit" value="登录">
+</form>
+</body>
+</html>
